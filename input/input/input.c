@@ -37,16 +37,13 @@ void liberar_arreglo_strings (ArregloStrings *arreglo) {
 
 ArregloStrings* crear_arreglo_strings (char *nombreArchivo) {
   char buffer[LARGO_BUFFER];
-  int capacidad = 0;
-  FILE *archivo;
-  archivo = fopen (nombreArchivo, "r");
-  capacidad = cantidad_de_lineas (archivo);
-  rewind (archivo);
+  int capacidad = cant_lineas (nombreArchivo);
   ArregloStrings *nuevoArreglo = malloc (sizeof(ArregloStrings));
   assert(nuevoArreglo);
   nuevoArreglo->strings = malloc (sizeof(char*) * capacidad);
   assert(nuevoArreglo->strings);
   nuevoArreglo->capacidad = capacidad;
+  FILE *archivo = fopen (nombreArchivo, "r");
   for (int i = 0; i < capacidad; ++i) {
     fscanf (archivo, "%[^\n]\n", buffer);
     nuevoArreglo->strings[i] = malloc (sizeof(char) * (strlen(buffer) + 1));
