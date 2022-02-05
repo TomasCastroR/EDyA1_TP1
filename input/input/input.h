@@ -10,7 +10,7 @@ typedef struct {
 
 /*cantidad_de_lineas: File* -> Int
   Recibe un archivo, devuelve la cantidad de lineas que posee el archivo*/
-int cantidad_de_lineas (FILE *archivo);
+int cant_lineas (char* nombreArchivo);
 
 /*liberar_arreglo_strings: ArregloStrings*
   Recibe una estructura de ArregloStrings,

@@ -4,18 +4,26 @@
 #include <assert.h>
 #include <string.h>
 
-#define LARGO_BUFFER 100
+#define LARGO_BUFFER 1024
 #define RANGO_EDAD 100
 
-int cantidad_de_lineas (FILE *archivo) {
-  int lineas = 0;
-  char buffer[LARGO_BUFFER];
-  int caracter = fgetc (archivo);
-  while (caracter != EOF) {
-    fgets (buffer, LARGO_BUFFER, archivo);
-    caracter = fgetc (archivo);
-    lineas++;
+int cant_lineas (char* nombreArchivo) {
+  int lineas = 0;  
+  FILE* f = fopen(nombreArchivo, "r");
+  if (f == NULL)
+    lineas = -1;
+  else {
+      size_t res = 0;
+      char buf[LARGO_BUFFER];
+      for(;feof(f);) {
+          res = fread (buf, 1, LARGO_BUFFER, f);
+          for (int i = 0; i < res; i++) {
+              if (buf[i] == '\n' || buf[i] == '\r')
+                lineas++;
+          }
+      }
   }
+  fclose(f);
   return lineas;
 }
 
