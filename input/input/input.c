@@ -3,6 +3,7 @@
 #include <time.h>
 #include <assert.h>
 #include <string.h>
+#include <unistd.h>
 
 #define LARGO_BUFFER 1024
 #define RANGO_EDAD 100
@@ -56,13 +57,12 @@ ArregloStrings* crear_arreglo_strings (char *nombreArchivo) {
 }
 
 void crear_archivo_personas (int cantPersonas,char *archivoNombres,
-                                      char *archivoPaises, char *nombreSalida) {
-  FILE *archivoSalida;
+                                      char *archivoPaises, char *nombreSalida) { 
   int random1, random2, edad;
   ArregloStrings *arregloNombres = crear_arreglo_strings (archivoNombres);
   ArregloStrings *arregloPaises = crear_arreglo_strings (archivoPaises);
-  archivoSalida = fopen (nombreSalida, "w");
-  srand (time(NULL));
+  FILE *archivoSalida = fopen (nombreSalida, "w");
+  srand (time(NULL) + getpid());
   for (int i = 0; i < cantPersonas; i++) {
     random1 = rand() % arregloNombres->capacidad;
     random2 = rand() % arregloPaises->capacidad;
