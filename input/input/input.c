@@ -16,7 +16,7 @@ int cant_lineas (char* nombreArchivo) {
   else {
       size_t res = 0;
       char buf[LARGO_BUFFER];
-      for(;feof(f);) {
+      for(;!feof(f);) {
           res = fread (buf, 1, LARGO_BUFFER, f);
           for (int i = 0; i < res; i++) {
               if (buf[i] == '\n' || buf[i] == '\r')
