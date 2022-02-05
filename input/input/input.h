@@ -1,5 +1,5 @@
-#ifndef __GENERAR_H__
-#define __GENERAR_H__
+#ifndef __INPUT_H__
+#define __INPUT_H__
 
 #include <stdio.h>
 

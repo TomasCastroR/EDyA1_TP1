@@ -1,4 +1,4 @@
-#include "generar.h"
+#include "input.h"
 #include <stdlib.h>
 #include <time.h>
 #include <assert.h>
